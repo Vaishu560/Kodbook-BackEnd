@@ -25,7 +25,7 @@ public class PostController {
             @RequestParam("photo") MultipartFile photo	) {
 		Post post = new Post();
 		post.setCaption(caption);
-		try {						//			https://github.com/deep473/springboot-myProfile/blob/main/allFiles
+		try {									
 			post.setPhoto(photo.getBytes());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
