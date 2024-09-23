@@ -45,11 +45,33 @@ public class NavigationController {
 		String username = (String) session.getAttribute("username");
 		User user = service.getUser(username);
 		model.addAttribute("user", user);
+		List<Post>myPosts=user.getPosts();
+		model.addAttribute("myPosts", myPosts);
 		return "myProfile";
 	}
 	
 	@GetMapping("/openEditProfile")
-	public String openEditProfile() {
-		return "editProfile";
+	public String openEditProfile(HttpSession session) {
+		
+		if(session.getAttribute("username")!=null)
+			return "editProfile";
+		else
+		    return "index";
+	}
+	
+	@PostMapping("/visitProfile")
+	public String visitProfile(@RequestParam String profileName, Model model) {
+		User user = service.getUser(profileName);
+		model.addAttribute("user", user);
+		List<Post> myPosts = user.getPosts();
+		model.addAttribute("myPosts", myPosts);
+		
+		return "showUserProfile";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "index";
 	}
 }
