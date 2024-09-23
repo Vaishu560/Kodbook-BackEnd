@@ -13,28 +13,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kodbook.entities.Post;
+import com.kodbook.entities.User;
 import com.kodbook.services.PostService;
+import com.kodbook.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PostController {
 	@Autowired
 	PostService service;
+	@Autowired
+	UserService userService;
 	
 	@PostMapping("/createPost")
 	public String createPost(@RequestParam ("caption") String caption,
-            @RequestParam("photo") MultipartFile photo	) {
+            @RequestParam("photo") MultipartFile photo,
+            Model model, HttpSession session) {
+		
+		String username = (String) session.getAttribute("username");
+		User user = userService.getUser(username);
+		
 		Post post = new Post();
+		//updating post object
+		post.setUser(user);
+		
 		post.setCaption(caption);
-		try {						//			https://github.com/deep473/springboot-myProfile/blob/main/allFiles
+		try {						
 			post.setPhoto(photo.getBytes());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		service.createPost(post);
+		//updating user object
+				List<Post> posts = user.getPosts();
+				if(posts == null) {
+					posts = new ArrayList<Post>();
+				}
+				posts.add(post);
+				user.setPosts(posts);
+				userService.updateUser(user);
+				
+		List<Post> allPosts = service.fetchAllPosts();
+		model.addAttribute("allPosts", allPosts);
 		return "home";
 	}
-
 	
 	@PostMapping("/likePost")
 	public String likePost(@RequestParam Long id, Model model) {

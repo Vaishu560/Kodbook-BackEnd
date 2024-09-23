@@ -1,7 +1,7 @@
 /* General page styling */
 body {
     font-family: 'Poppins', sans-serif;  /* Funky but classy font */
-    background-color: #1b1b32;           /* Light, calming background */
+    background-color: #9DBDFF;           /* Light, calming background */
     color: #2A2A2A;                      /* Text color */
     margin: 0;
     padding: 0;
@@ -27,7 +27,7 @@ h3 {
 hr {
     border: 0;
     height: 2px;
-    background-color: #1b1b32;
+    background-color: #FFD7C4;
     margin: 20px 0;
 }
 
@@ -46,7 +46,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="dat
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 2px solid #400080;
+    border: 2px solid #7695FF;
     border-radius: 5px;
     font-size: 1.1em;
 }
@@ -54,7 +54,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="dat
 /* Radio buttons */
 label {
     font-size: 1.1em;
-    color: #004080;
+    color: #2A2A2A;
 }
 
 input[type="radio"] {
@@ -75,7 +75,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0000ff;
+    background-color: #FF9874;
     opacity: 0.8;
 }
 

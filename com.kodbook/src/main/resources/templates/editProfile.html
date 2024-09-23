@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 		<meta charset="UTF-8">
 		<title>KodBook Sign up</title>
 		<link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
@@ -9,8 +9,7 @@
 		<h1>KodBook</h1>
 		<h3>Update your profile!</h3>
 		<hr>
-		<form action="/updateProfile" method="post" enctype="multipart/form-data">
-			
+		<form action="/updateProfile" method="post" enctype="multipart/form-data">		
 			<label>DOB : </label>
 			<input type = "date" name = "dob">
 			<br><br>	
@@ -34,9 +33,11 @@
 			<label>GIT HUB : </label>
 			<input type = "text" name = "gitHub">
 			<br><br>
-			<input type="file" name = "profilePic" accept="image/*"/>
+			<input type="file" name="profilePic" accept="image/*" />
 			<br>
-			<input type="submit" value="Update Profile">
+			<input type="submit" value = "Update Profile">
+			
+			
 		</form>
 	</body>
 </html>

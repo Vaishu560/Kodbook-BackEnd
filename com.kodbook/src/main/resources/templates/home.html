@@ -7,22 +7,45 @@
 </head>
 <body>
     <nav>
-        <a href="#">News feed</a>
+    	<span th:text="${session.username}"></span>
+        <a href="/goHome">News feed</a>
         <a href="/openCreatePost">Create post</a>
         <a href="/openMyProfile">My profile</a>
     </nav>
     
-    <div class="profile-details">
+     <div class="posts-container">
         <span th:each="post : ${allPosts}">
-            <div class="post">
-                <p><strong>Photo:</strong></p>
-                <img th:if="${post.photoBase64}" 
-                    th:src="'data:image/jpeg;base64,' + ${post.photoBase64}" 
-                    alt="Post Photo" />
-                <p><strong>Caption:</strong> 
-                    <span th:text="${post.caption}"></span></p>
-                <p><strong>Likes:</strong> 
-                    <span th:text="${post.likes}"></span></p>
+            <div class="post-card">
+                <!-- Profile picture and Username -->
+                <div class="post-header">
+                    <div class="profile-pic">
+                        <img th:if="${post.user.photoBase64}" 
+                             th:src="'data:image/jpeg;base64,' + ${post.user.photoBase64}" 
+                             alt="User Photo" />
+                    </div>
+                    
+                    <span class="username" th:text="${post.user.username}">Unknown</span>
+	                    
+              
+                </div>
+
+                <!-- Post Image -->
+                <div class="post-image">
+                    <img th:if="${post.photoBase64}" 
+                         th:src="'data:image/jpeg;base64,' + ${post.photoBase64}" 
+                         alt="Post Photo" />
+                </div>
+
+                <!-- Caption -->
+                <p class="caption">
+                    <span th:text="${post.caption}"></span>
+                </p>
+
+                <!-- Likes -->
+                <p class="likes">
+                    <strong>Likes:</strong> 
+                    <span th:text="${post.likes}"></span>
+                </p>
                 
                 <!-- Like form -->
                 <form action="/likePost" method="post">

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New Post</title>
+    <title>Create New Post</title>
     <link rel="stylesheet" type="text/css" th:href="@{/profile.css}">
 </head>
 <body>
@@ -13,14 +13,15 @@
         <a href="/openMyProfile">My profile</a>
     </nav>
 
-    <h2>Profile Creation</h2>
-    
-    <form id="profileForm" action="/createPost" method="post" enctype="multipart/form-data">
-        <textarea name="caption" placeholder="Write your caption here..." required></textarea>
-        <br><br>
-        <input type="file" name="photo" accept="image/*" />
-        <br><br>
-        <button type="submit">POST</button>
-    </form>
+    <div class="post-form-container">
+        <h2>Create a New Post</h2>
+        <form id="profileForm" action="/createPost" method="post" enctype="multipart/form-data">
+            <textarea name="caption" placeholder="Write your caption here..." required></textarea>
+            <br><br>
+            <input type="file" name="photo" accept="image/*" />
+            <br><br>
+            <button type="submit">POST</button>
+        </form>
+    </div>
 </body>
 </html>
